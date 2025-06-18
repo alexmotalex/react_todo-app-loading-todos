@@ -1,9 +1,10 @@
 import React, { RefObject, useState } from 'react';
 import { ErrorMessageType } from '../constants/ErrorMessageType';
 import { USER_ID } from '../api/todos';
+import { Todo } from '../types/Todo';
 
 type Props = {
-  onSubmit: (title: string, userId: number, completed: boolean) => void;
+  onSubmit: ({ title, userId, completed }: Omit<Todo, 'id'>) => void;
   handleError: (error: ErrorMessageType) => void;
   inputRef: RefObject<HTMLInputElement>;
   loading: boolean;
@@ -30,7 +31,11 @@ export const Header: React.FC<Props> = ({
       return;
     }
 
-    onSubmit(prepearedInputValue, USER_ID, DEFAULT_COMPLETED);
+    onSubmit({
+      title: prepearedInputValue,
+      userId: USER_ID,
+      completed: DEFAULT_COMPLETED,
+    });
     setTodoInput('');
   };
 

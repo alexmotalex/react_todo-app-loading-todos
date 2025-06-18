@@ -24,9 +24,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     todoService
       .getTodos()
-      .then(data => {
-        setTodos(data);
-      })
+      .then(setTodos)
       .catch(error => {
         setErrorMessage(ErrorMessageType.Load);
 
@@ -59,7 +57,7 @@ export const App: React.FC = () => {
     completedTodos,
   } = getTodoStats(todos, filter);
 
-  const addTodo = (title: string, userId: number, completed: boolean) => {
+  const addTodo = ({ title, userId, completed }: Omit<Todo, 'id'>) => {
     setLoading(true);
 
     todoService
