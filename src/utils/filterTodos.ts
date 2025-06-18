@@ -1,10 +1,5 @@
+import { FilterType } from '../constants/FilterType';
 import { Todo } from '../types/Todo';
-
-export enum FilterType {
-  All = 'all',
-  Active = 'active',
-  Completed = 'completed',
-}
 
 export const getActiveTodos = (todos: Todo[]) =>
   todos.filter(todo => !todo.completed);
@@ -14,9 +9,9 @@ export const getCompletedTodos = (todos: Todo[]) =>
 
 export const filterTodos = (todos: Todo[], filter: string) =>
   todos.filter(todo => {
-    return filter === 'all'
+    return filter === FilterType.All
       ? true
-      : filter === 'active'
+      : filter === FilterType.Active
         ? !todo.completed
         : todo.completed;
   });

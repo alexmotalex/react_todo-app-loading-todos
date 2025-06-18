@@ -10,7 +10,8 @@ export const getTodoStats = (todos: Todo[], filter: string) => {
     activeTodos,
     completedTodos,
     visibleTodos,
-    activeCount: activeTodos.length,
-    completedCount: completedTodos.length,
+    allTodosCount: todos.length,
+    activeTodosCount: activeTodos.length,
+    completedTodosCount: completedTodos.length,
   };
 };
